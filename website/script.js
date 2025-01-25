@@ -1,6 +1,6 @@
 // Change These
 
-var moneyPerClick = 1;
+var baseMoneyPerClick = 1;
 
 // 
 
@@ -8,13 +8,14 @@ var moneyPerClick = 1;
 var cookie;
 var currCoin = ["Bitcoin", "btc", "₿", "btc-bitcoin"];
 var exchangeRate = 104997.80;
+var clickAmount = baseMoneyPerClick/exchangeRate
 
-var clickAmount = moneyPerClick/exchangeRate
+var cps = 0;
 
 
 function initializeCookie() {
      //getUSDPrice("btc").then(x => {exchangeRate = x;})
-     document.getElementById("earning-rate").textContent = moneyPerClick + "$ USD";
+     document.getElementById("earning-rate").textContent = baseMoneyPerClick + "$ USD";
      document.cookie = '';
      if (!document.cookie || document.cookie == '' || document.cookie == 'undefined') {
           document.cookie = `{"coins": {"btc": 0, "eth": 0}}`;
@@ -22,15 +23,6 @@ function initializeCookie() {
      
      cookie = JSON.parse(document.cookie);
      updateBalance()
-}
-
-async function getUSDPrice(coin) {
-     url = `https://api.coinpaprika.com/v1/coins/${coin}/ohlcv/today`;
-     try {
-          const response = await fetch(url);
-          const json = await response.json();
-          return json[0].close * cookie.coins[currCoin[1]];
-        } catch (error) {return 0;}
 }
 
 
@@ -43,8 +35,6 @@ function mineCrypto() {
      updateBalance();
      
 }
-
-
 
 
 function updateBalance() {
@@ -62,7 +52,15 @@ function saveCookie() {
 
 
 
-    
+async function getUSDPrice(coin) {
+     url = `https://api.coinpaprika.com/v1/coins/${coin}/ohlcv/today`;
+     try {
+          const response = await fetch(url);
+          const json = await response.json();
+          return json[0].close * cookie.coins[currCoin[1]];
+        } catch (error) {return 0;}
+}
+
 
 
 
