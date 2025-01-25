@@ -10,15 +10,15 @@
 <body onload = initializeCookie(); onunload = saveCookie()>
     <h1>Crypto Clicker</h1>
     <div class="card">
-        <p>Crypto Balance</p>
+        <p id ="crypName"></p> 
         <p id="crypto-balance">0.00 ₿</p>
+        <p><span id="usdprice"></span>$ USD</p>
     </div>
     <div class="container">
-        
         <img src="filler.png" alt="crypto-icon">
         <button class="button btn" onclick="mineCrypto()">Mine Crypto</button>
     </div>
     <button class="button" onclick="reset()">Reset</button>
-    <p>Earning Rate: <span id="earning-rate">1</span> ₿ per click</p>
+    <p>Earning Rate: <span id="earning-rate">1</span> per click</p>
 </body>
 </html>
