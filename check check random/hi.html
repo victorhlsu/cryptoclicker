@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Crypto Clicker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
-    check
-
+    <h1>Crypto Clicker</h1>
+    <div class="card">
+        <p>Crypto Balance</p>
+        <p id="crypto-balance">0.00 ₿</p>
+    </div>
+    <div class="container">
+        
+        <img src="filler.png" alt="crypto-icon">
+        <button class="button btn" onclick="mineCrypto()">Mine Crypto</button>
+    </div>
+    <button class="button" onclick="reset()">Reset</button>
+    <p>Earning Rate: <span id="earning-rate">1</span> ₿ per click</p>
 </body>
 </html>
