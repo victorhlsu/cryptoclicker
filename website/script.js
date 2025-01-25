@@ -25,7 +25,7 @@ function initializeCookie() {
 }
 
 async function getUSDPrice(coin) {
-     url = "https://api.coinpaprika.com/v1/coins/btc-bitcoin/ohlcv/today";
+     url = `https://api.coinpaprika.com/v1/coins/${coin}/ohlcv/today`;
      try {
           const response = await fetch(url);
           const json = await response.json();
@@ -37,17 +37,14 @@ async function getUSDPrice(coin) {
 function mineCrypto() {
      cookie.coins[currCoin[1]] += clickAmount;
      const img = document.querySelector('.container img');
-     img.style.animation = 'none'; // Reset the animation
-     void img.offsetWidth; // Trigger reflow to restart the animation
+     img.style.animation = 'none';
+     void img.offsetWidth;
      img.style.animation = 'click-bounce 0.3s ease-in-out';
      updateBalance();
      
 }
 
-function reset() {
-     cookie.coins[currCoin[1]] = 0
-     updateBalance();
-}
+
 
 
 function updateBalance() {
