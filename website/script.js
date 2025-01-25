@@ -13,6 +13,23 @@ var clickAmount = baseMoneyPerClick/exchangeRate
 var cps = 0;
 
 
+function changeCoin(coin) {
+     if (coin == "btc") {
+          currCoin = ["Bitcoin", "btc", "₿", "btc-bitcoin"];
+          document.getElementById("crypto-icon").src = "filler.png"
+          exchangeRate = 104997.80;
+          //getUSDPrice("btc").then(x => {exchangeRate = x;}) 
+          baseMoneyPerClick/exchangeRate
+     } 
+     else if (coin == "eth") {
+          currCoin = ["Ethereum", "eth", "Ξ", "eth-ethereum"];
+          document.getElementById("crypto-icon").src = "eth.png"
+          exchangeRate = 3343.24;
+          //getUSDPrice("eth").then(x => {exchangeRate = x;})
+          baseMoneyPerClick/exchangeRate
+     }
+}
+
 function initializeCookie() {
      //getUSDPrice("btc").then(x => {exchangeRate = x;})
      document.getElementById("earning-rate").textContent = baseMoneyPerClick + "$ USD";
