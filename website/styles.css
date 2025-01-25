@@ -11,6 +11,48 @@ body {
     margin: 0;
 }
 
+.master-container {
+    display: flex;
+    flex-direction: row; /* Align children horizontally */
+    width: 100%; /* Full width of the screen */
+    max-width: 1200px; /* Limit maximum width */
+    margin: 0 auto; /* Center the container */
+    justify-content: space-around;
+}
+
+.clickarea,
+.rates,
+.upgrades {
+    flex: 1; /* Each child takes up equal space */
+    margin: 0 10px; /* Add some spacing between the divs */
+    padding: 20px; /* Add padding for better spacing */
+    background-color: #333; /* Background color for each section */
+    border-radius: 10px; /* Rounded corners */
+    border: 2px solid #ffcc00; /* Border color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.bottom-left{
+    position:absolute;
+    top: 890px;
+    transform: scale(50%);
+    
+}
+.rate1,
+.rate2,
+.rate3{
+    border: 2px solid #ffcc00;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+    width: fit-content;
+    background-color: #333;
+}
+
+
 .card {
     background-color: #333;
     padding: 30px; /* Increased padding */
