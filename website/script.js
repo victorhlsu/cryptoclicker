@@ -58,13 +58,6 @@ function saveCookie() {
 }
 
 
-// var fetchUrl = require("fetch").fetchUrl;
-// const link = "https://api.coinpaprika.com/v1";
-
-// fetchUrl(`https://api.coinpaprika.com/v1/coins/btc-bitcoin/ohlcv/today`, function (err, meta, body) {
-//      (JSON.parse(body.toString())[0].open)})
-
-
 
 
     
