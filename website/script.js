@@ -18,20 +18,20 @@ function changeCoin(coin) {
           currCoin = ["Bitcoin", "btc", "₿", "btc-bitcoin"];
           document.getElementById("crypto-icon").src = "filler.png"
           exchangeRate = 104997.80;
-          //getUSDPrice("btc").then(x => {exchangeRate = x;}) 
-          baseMoneyPerClick/exchangeRate
+          //getUSDPrice().then(x => {exchangeRate = x;}) 
+          clickAmount = baseMoneyPerClick/exchangeRate
      } 
      else if (coin == "eth") {
           currCoin = ["Ethereum", "eth", "Ξ", "eth-ethereum"];
           document.getElementById("crypto-icon").src = "eth.png"
           exchangeRate = 3343.24;
-          //getUSDPrice("eth").then(x => {exchangeRate = x;})
-          baseMoneyPerClick/exchangeRate
+          //getUSDPrice().then(x => {exchangeRate = x;})
+          clickAmount = baseMoneyPerClick/exchangeRate
      }
 }
 
 function initializeCookie() {
-     //getUSDPrice("btc").then(x => {exchangeRate = x;})
+     getUSDPrice().then(x => {exchangeRate = x;})
      document.getElementById("earning-rate").textContent = baseMoneyPerClick + "$ USD";
      document.cookie = '';
      if (!document.cookie || document.cookie == '' || document.cookie == 'undefined') {
@@ -69,12 +69,12 @@ function saveCookie() {
 
 
 
-async function getUSDPrice(coin) {
-     url = `https://api.coinpaprika.com/v1/coins/${coin}/ohlcv/today`;
+async function getUSDPrice() {
+     let url = `https://api.coinpaprika.com/v1/tickers/${currCoin[3]}`
      try {
           const response = await fetch(url);
           const json = await response.json();
-          return json[0].close * cookie.coins[currCoin[1]];
+          return json[0].quotes.price * cookie.coins[currCoin[1]];
         } catch (error) {return 0;}
 }
 
