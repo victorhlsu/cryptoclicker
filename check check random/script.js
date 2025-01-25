@@ -10,3 +10,6 @@ function reset() {
     crypto = 0;
     document.getElementById("crypto-balance").textContent = crypto.toFixed(2) + " ₿";
     }
+
+
+    
