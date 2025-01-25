@@ -74,8 +74,8 @@ async function getUSDPrice() {
      try {
           const response = await fetch(url);
           const json = await response.json();
-          return json[0].quotes.price * cookie.coins[currCoin[1]];
-        } catch (error) {return 0;}
+          return json.quotes.price * cookie.coins[currCoin[1]];
+        } catch (error) {console.log(error)}
 }
 
 
