@@ -32,37 +32,65 @@ body {
 }
 
 
-/* Container needed to position the button. Adjust the width as needed */
+/* Keyframes for the hover bounce animation */
+@keyframes hover-bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.1);
+    }
+}
+
+/* Keyframes for the click bounce animation */
+@keyframes click-bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25%{
+        transform: scale(0.95);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+
+    75%{
+        transform: scale(0.95);
+    }
+}
+
+/* Ensure the image and button are positioned correctly */
 .container {
     position: relative;
     width: 50%;
-  }
-  
-  /* Make the image responsive */
-  .container img {
+}
+
+.container img {
     width: 100%;
     height: auto;
-  }
-  
-  /* Style the button and place it in the middle of the container/image */
-  .container .btn {
+    transition: transform 0.1s ease-in-out; /* Smooth transition for hover/click */
+}
+
+.container .btn {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -55%);
-    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -52.5%);
     background-color: transparent;
     opacity: 50%;
-    color:transparent;
-    font-size: 16px;
-    padding:  128px 126px;
+    color: transparent;
+    width: 100%;
+    height: auto;
+    font-size: 12px;
     border: none;
     cursor: pointer;
     border-radius: 50%;
-    
+    aspect-ratio: 1/1;
+}
 
-  }
-  
-  .container.img:hover {
-    size: 200% ;
-  }
+
+/* Apply the bounce animation to the image on hover */
+.container:focus .img {
+    animation: hover-bounce 0.1s ease-in-out;
+}
+
