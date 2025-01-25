@@ -4,6 +4,7 @@ var baseMoneyPerClick = 1;
 
 // 
 
+var interval;
 
 var cookie;
 var currCoin = ["Bitcoin", "btc", "₿", "btc-bitcoin"];
@@ -13,25 +14,27 @@ var clickAmount = baseMoneyPerClick/exchangeRate
 var cps = 0;
 
 
-function changeCoin(coin) {
-     if (coin == "btc") {
+function changeCoin() {
+     if (currCoin[1] == "eth") {
           currCoin = ["Bitcoin", "btc", "₿", "btc-bitcoin"];
           document.getElementById("crypto-icon").src = "filler.png"
           exchangeRate = 104997.80;
           //getUSDPrice().then(x => {exchangeRate = x;}) 
-          clickAmount = baseMoneyPerClick/exchangeRate
+          clickAmount = baseMoneyPerClick/exchangeRate;
+          updateBalance();
      } 
-     else if (coin == "eth") {
+     else if (currCoin[1] == "btc") {
           currCoin = ["Ethereum", "eth", "Ξ", "eth-ethereum"];
           document.getElementById("crypto-icon").src = "eth.png"
           exchangeRate = 3343.24;
           //getUSDPrice().then(x => {exchangeRate = x;})
           clickAmount = baseMoneyPerClick/exchangeRate
+          updateBalance();
      }
 }
 
 function initializeCookie() {
-     getUSDPrice().then(x => {exchangeRate = x;})
+     //setInterval(getUSDPrice().then(x => {exchangeRate = x;}), 30000);
      document.getElementById("earning-rate").textContent = baseMoneyPerClick + "$ USD";
      document.cookie = '';
      if (!document.cookie || document.cookie == '' || document.cookie == 'undefined') {
@@ -78,6 +81,8 @@ async function getUSDPrice() {
           return json.quotes.USD.price;
         } catch (error) {console.log(error)}
 }
+
+
 
 
 
