@@ -36,7 +36,12 @@ async function getUSDPrice(coin) {
 
 function mineCrypto() {
      cookie.coins[currCoin[1]] += clickAmount;
+     const img = document.querySelector('.container img');
+     img.style.animation = 'none'; // Reset the animation
+     void img.offsetWidth; // Trigger reflow to restart the animation
+     img.style.animation = 'click-bounce 0.3s ease-in-out';
      updateBalance();
+     
 }
 
 function reset() {
