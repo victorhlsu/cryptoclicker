@@ -70,11 +70,12 @@ function saveCookie() {
 
 
 async function getUSDPrice() {
-     let url = `https://api.coinpaprika.com/v1/tickers/${currCoin[3]}`
+     let url = `https://api.coinpaprika.com/v1/tickers/${currCoin[3]}`;
      try {
           const response = await fetch(url);
           const json = await response.json();
-          return json.quotes.price * cookie.coins[currCoin[1]];
+          console.log(json);
+          return json.quotes.USD.price;
         } catch (error) {console.log(error)}
 }
 
