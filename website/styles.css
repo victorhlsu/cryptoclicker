@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+.card {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #ffcc00;
+    margin: 20px;
+}
+.button {
+    background-color: #ffcc00;
+    color: #1a1a1a;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.button:hover {
+    background-color: #e6b800;
+}
+
+
+/* Container needed to position the button. Adjust the width as needed */
+.container {
+    position: relative;
+    width: 50%;
+  }
+  
+  /* Make the image responsive */
+  .container img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Style the button and place it in the middle of the container/image */
+  .container .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: transparent;
+    opacity: 50%;
+    color:transparent;
+    font-size: 16px;
+    padding:  128px 126px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    
+
+  }
+  
+  .container.img:hover {
+    size: 200% ;
+  }
