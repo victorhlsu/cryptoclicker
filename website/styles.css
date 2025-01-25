@@ -10,27 +10,33 @@ body {
     height: 100vh;
     margin: 0;
 }
+
 .card {
     background-color: #333;
-    padding: 20px;
+    padding: 30px; /* Increased padding */
     border-radius: 10px;
     border: 2px solid #ffcc00;
     margin: 20px;
+    width: 90%; /* Make the card wider */
+    max-width: 500px; /* Limit maximum width */
 }
+
 .button {
     background-color: #ffcc00;
     color: #1a1a1a;
-    padding: 10px 20px;
+    padding: 15px 30px; /* Increased padding */
     font-size: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    margin: 20px 0; /* Added margin */
+    width: 100%; /* Make buttons full width */
+    max-width: 200px; /* Limit button width */
 }
+
 .button:hover {
     background-color: #e6b800;
 }
-
 
 /* Keyframes for the hover bounce animation */
 @keyframes hover-bounce {
@@ -38,7 +44,7 @@ body {
         transform: scale(1);
     }
     50% {
-        transform: scale(0.1);
+        transform: scale(0.9);
     }
 }
 
@@ -47,35 +53,41 @@ body {
     0%, 100% {
         transform: scale(1);
     }
-    25%{
+    25% {
         transform: scale(0.95);
     }
     50% {
         transform: scale(1.1);
     }
-
-    75%{
+    75% {
         transform: scale(0.95);
     }
 }
 
-/* Ensure the image and button are positioned correctly */
+/* Container for the image and button */
 .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    width: 50%;
+    width: 100%; /* Full width */
+    max-width: 300px; /* Limit maximum width */
+    margin: 20px 0; /* Added margin */
 }
 
+/* Image styling */
 .container img {
     width: 100%;
     height: auto;
-    transition: transform 0.1s ease-in-out; /* Smooth transition for hover/click */
+    transition: transform 0.1s ease-in-out;
 }
 
+/* Button styling */
 .container .btn {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -52.5%);
+    transform: translate(-50%, -50%);
     background-color: transparent;
     opacity: 50%;
     color: transparent;
@@ -88,9 +100,19 @@ body {
     aspect-ratio: 1/1;
 }
 
-
-/* Apply the bounce animation to the image on hover */
-.container:focus .img {
-    animation: hover-bounce 0.1s ease-in-out;
+/* Hover effect */
+.container:hover img {
+    animation: hover-bounce 0.3s ease-in-out;
 }
 
+/* Click effect */
+.container:active img {
+    animation: click-bounce 0.2s ease-in-out;
+}
+
+/* Spacing for the earning rate text */
+#earning-rate {
+    display: block;
+    margin: 20px 0; /* Added margin */
+    font-size: 18px;
+}
