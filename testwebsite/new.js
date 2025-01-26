@@ -1,7 +1,7 @@
 // Change These
 
 var baseMoneyPerClick = 1;
-var baseClickPerSecond = 1;
+var baseClickPerSecond = 0;
 
 // 
 
@@ -61,7 +61,7 @@ function initializeCookie() {
      }
      
      cookie = JSON.parse(document.cookie);
-     cpsInterval = setInterval(mineCrypto, 1000/cps);
+     cpsInterval = setInterval(function () {mineCrypto(); if (cps == 0) clearInterval(cpsInterval)}, 1000/cps);
 
 
      // Price change per 500 seconds
@@ -139,7 +139,7 @@ function transferCrypto() {
     var from2 = document.getElementById('from');
     var from = from2.options[from2.selectedIndex].value;
 
-    if (!payAmount) {
+    if (!payAmount || payAmount <=   0) { 
       alert("Input a valid USD value!")
       return;
     }
