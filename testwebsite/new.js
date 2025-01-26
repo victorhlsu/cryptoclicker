@@ -120,7 +120,7 @@ function updateBalance() {
 
      for (const key in coins) {
       document.getElementById(`portfolio-h3-${key}`).textContent = `${coins[key].name}`;
-      document.getElementById(`portfolio-paragraph-${key}`).textContent = `Holdings: ${cookie.coins[key]} ${coins[key].name}`;
+      document.getElementById(`portfolio-paragraph-${key}`).textContent = `Holdings: ${cookie.coins[key]} ${coins[key].symbol}`;
      }
 
      document.getElementById('piecharts').src= getChart();
