@@ -1,0 +1,149 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    background-color: #111;
+    padding: 1rem 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0099ff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: #0099ff;
+    border-radius: 5px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    color: #aaa;
+}
+
+/* Portfolio Section */
+.portfolio {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.portfolio-card {
+    background: #222;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Coins Section */
+.coins {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.coin-card {
+    background: #222;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Exchange Section */
+.exchange {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.exchange-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+label {
+    text-align: left;
+    font-size: 1rem;
+    color: #aaa;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+input, select {
+    background: #222;
+    color: #fff;
+}
+
+button {
+    background: #0099ff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #0077cc;
+}
+
+/* Footer */
+.footer {
+    background-color: #111;
+    text-align: center;
+    padding: 2rem 0;
+    color: #aaa;
+}
