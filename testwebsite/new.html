@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Clicker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Crypto<span>Clicker</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#coins">Coins</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="hero container">
+        <div class="hero-content">
+            <h1>Welcome to Crypto Clicker</h1>
+            <p>Your gateway to cryptocurrency trading.</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio container">
+        <h2 class="section-title">Portfolio</h2>
+        <p>Track and manage your cryptocurrency portfolio with ease.</p>
+        <div class="portfolio-content">
+            <div class="portfolio-card">
+                <h3>Bitcoin</h3>
+                <p>Holdings: 1.25 BTC</p>
+            </div>
+            <div class="portfolio-card">
+                <h3>Ethereum</h3>
+                <p>Holdings: 10.5 ETH</p>
+            </div>
+            <div class="portfolio-card">
+                <h3>Litecoin</h3>
+                <p>Holdings: 50 LTC</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coins Section -->
+    <section id="coins" class="coins container">
+        <h2 class="section-title">Coins</h2>
+        <div class="coins-content">
+            <div class="coin-card">
+                <h3>Bitcoin (BTC)</h3>
+                <p>Current Price: $30,000</p>
+            </div>
+            <div class="coin-card">
+                <h3>Ethereum (ETH)</h3>
+                <p>Current Price: $2,000</p>
+            </div>
+            <div class="coin-card">
+                <h3>Litecoin (LTC)</h3>
+                <p>Current Price: $100</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crypto Exchange Section -->
+    <section id="exchange" class="exchange container">
+        <h2 class="section-title">Crypto Exchange</h2>
+        <form id="cryptoForm" class="exchange-form">
+            <div class="form-group">
+                <label for="amount">Amount in USD:</label>
+                <input type="number" id="amount" placeholder="Enter amount" required />
+            </div>
+            <div class="form-group">
+                <label for="currency">Select Cryptocurrency:</label>
+                <select id="currency">
+                    <option value="bitcoin" data-rate="0.000025">Bitcoin (BTC)</option>
+                    <option value="ethereum" data-rate="0.0004">Ethereum (ETH)</option>
+                    <option value="litecoin" data-rate="0.005">Litecoin (LTC)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="result">Converted Amount:</label>
+                <input type="text" id="result" placeholder="Crypto amount" readonly />
+            </div>
+            <button type="submit">Convert</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Crypto Clicker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("cryptoForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const amount = parseFloat(document.getElementById("amount").value);
+            const currencySelect = document.getElementById("currency");
+            const conversionRate = parseFloat(currencySelect.options[currencySelect.selectedIndex].dataset.rate);
+
+            if (!isNaN(amount) && conversionRate) {
+                const converted = (amount * conversionRate).toFixed(8);
+                document.getElementById("result").value = converted;
+            } else {
+                alert("Please enter a valid amount and select a cryptocurrency.");
+            }
+        });
+    </script>
+</body>
+</html>
