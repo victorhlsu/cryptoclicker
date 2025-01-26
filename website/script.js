@@ -107,8 +107,25 @@ function saveCookie() {
      document.cookie = JSON.stringify(cookie);
 }
 
+async function getChart() {
+     let sum = 0;
+     let coinPrice = [];
+     let coinName = [];
+     for (const key in coins) {
+          sum += (exchangeRate*cookie.coins[key]).toFixed(2);
+     };
 
+     for (const key in coins) {
+          coinPrice.append(`$${exchangeRate*cookie.coins[key]}`);
+          coinName.append(coins[key].name)
+     }
 
+     let meta = 
+     `{type:'doughnut',data:{labels:${coinName},datasets:[{data:${coinPrice}}]},options:{plugins:{doughnutlabel:{labels:[{text:'$${sum}USD',font:{size:20}},{text:'total'}]}}}}`
+
+     return `https://quickchart.io/chart?c=${meta}`;
+
+}
 
 function updatePrice() {
     for (const key in coins) {
@@ -123,7 +140,6 @@ async function getUSDPrice(ticker) {
      try {
           const response = await fetch(url);
           const json = await response.json();
-          console.log(json);
           return json.quotes.USD.price;
         } catch (error) {return null};
 }
