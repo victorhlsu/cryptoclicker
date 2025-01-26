@@ -46,7 +46,7 @@ var cps = baseClickPerSecond;
 var cpsInterval; 
 
 
-function initializeCookie() {
+function initializeCookie() { 
   cookie = {"coins": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0},
   "gpus": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0}};
   console.log(document.cookie);
@@ -193,7 +193,6 @@ function updateGPU(a) {
     cookie.gpus[gpuinstall] += buyGPU;
     alert(`Successfully bought:\n ${buyGPU} GPUS for ${coins[gpuinstall].symbol} for ${(multiplier/coins[convertTo].previousPrice).toFixed(5)}${coins[convertTo].symbol}`)
     buyGPU = 0;
-    updateBalance();
   }
 
   else {
