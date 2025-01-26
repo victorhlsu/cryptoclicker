@@ -37,8 +37,7 @@ var coins = {
     }
 }
 
-var cookie = {"coins": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0},
-"gpus": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0}};
+var cookie;
 
 var currCoin = "bitcoin";
 var clickAmount;
@@ -48,8 +47,11 @@ var cpsInterval;
 
 
 function initializeCookie() {
-     if (document.cookie && !document.cookie == 'undefined') {
-          cookie = JSON.parse(document.cookie);
+  cookie = {"coins": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0},
+  "gpus": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0}};
+  console.log(document.cookie);
+     if (document.cookie) {
+        cookie = JSON.parse(document.cookie);
      } 
   
 
@@ -223,7 +225,7 @@ function updateBalance() {
 
 
 function saveCookie() {
-     document.cookie = JSON.stringify(cookie);
+  document.cookie = JSON.stringify(cookie);
 }
 
 
