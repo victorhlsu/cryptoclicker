@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="new.css">
     <script src="new.js"></script>
 </head>
-<body>
+<body onload = initializeCookie(); onunload = saveCookie()>
     <!-- Navigation -->
     <header class="header">
         <nav class="nav container">
@@ -26,7 +26,7 @@
         <div class="hero-content">
             <h1>Welcome to Crypto Clicker</h1>
             <p>Your gateway to cryptocurrency trading.</p>
-        </div>
+        </div>d 
     </section>
 
     <div class="logo-container">
@@ -36,39 +36,15 @@
     <section id="portfolio" class="portfolio container">
         <h2 class="section-title">Portfolio</h2>
         <p>Track and manage your cryptocurrency portfolio with ease.</p>
-        <div class="portfolio-content">
-            <div class="portfolio-card">
-                <h3>Bitcoin</h3>
-                <p>Holdings: 1.25 BTC</p>
-            </div>
-            <div class="portfolio-card">
-                <h3>Ethereum</h3>
-                <p>Holdings: 10.5 ETH</p>
-            </div>
-            <div class="portfolio-card">
-                <h3>Litecoin</h3>
-                <p>Holdings: 50 LTC</p>
-            </div>
+        <div class="portfolio-content", id="portfolio-content">
         </div>
     </section>
 
     <!-- Coins Section -->
-    <section id="coins" class="coins container">
-        <h2 class="section-title">Coins</h2>
-        <div class="coins-content">
-            <div class="coin-card">
-                <h3>Bitcoin (BTC)</h3>
-                <p>Current Price: $30,000</p>
-            </div>
-            <div class="coin-card">
-                <h3>Ethereum (ETH)</h3>
-                <p>Current Price: $2,000</p>
-            </div>
-            <div class="coin-card">
-                <h3>Litecoin (LTC)</h3>
-                <p>Current Price: $100</p>
-            </div>
-        </div>
+    <section id="piechart" class="coins container">
+        <h2 class="section-title">Portfolio Chart</h2>
+        <img id="piecharts" src="" alt="pie chart"></div>
+
     </section>
 
     <!-- Crypto Exchange Section -->

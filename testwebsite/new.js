@@ -67,14 +67,27 @@ function initializeCookie() {
      setInterval(updatePrice(), 300000);
      let i = 300;
     setInterval(function () {
-        document.getElementById("updatetime").textContent = i--;
+        //document.getElementById("updatetime").textContent = i--;
         if (i < 0) { i = 300; }
     }, 1000); 
     exchangeRate = coins[currCoin].previousPrice;
     clickAmount = baseMoneyPerClick/exchangeRate;
-    document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
+    //document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
 
-
+    for (const key in coins) {
+      var div = document.createElement('div');
+      div.id = `portfolio-${key}`
+      var paragraph = document.createElement('p');
+      paragraph.id = `portfolio-paragraph-${key}`
+      var h3 = document.createElement('h3');
+      h3.id = `portfolio-h3-${key}`
+      paragraph.innerHTML = `Holdings: ${cookie.coins[key]} ${coins[key].symbol}`
+      div.className="portfolio-card";
+      h3.innerHTML=coins[key].name
+      div.appendChild(h3);
+      div.appendChild(paragraph);
+      document.getElementById("portfolio-content").appendChild(div);
+     }
 
      
      updateBalance();
@@ -83,10 +96,6 @@ function initializeCookie() {
 
 function mineCrypto() {
      cookie.coins[currCoin] += clickAmount;
-     const img = document.querySelector('.container img');
-     img.style.animation = 'none';
-     void img.offsetWidth;
-     img.style.animation = 'click-bounce 0.3s ease-in-out';
 
 
      updateBalance();
@@ -95,10 +104,17 @@ function mineCrypto() {
 
 
 function updateBalance() {
-     document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
-     document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(10) + `${coins[currCoin].symbol}`;
-     document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin]).toFixed(2);
-     document.getElementById("crypName").textContent = coins[currCoin].name;
+     //document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
+     //document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(10) + `${coins[currCoin].symbol}`;
+     //document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin]).toFixed(2);
+     //document.getElementById("crypName").textContent = coins[currCoin].name;
+
+     for (const key in coins) {
+      document.getElementById(`portfolio-h3-${key}`).textContent = `${coins[key].name}`;
+      document.getElementById(`portfolio-paragraph-${key}`.textContent = `Holdings: ${cookie.coins[key]} ${coins[key].name}`);
+     }
+
+     document.getElementById('piecharts').src= getChart();
 
 }
 
@@ -107,22 +123,25 @@ function saveCookie() {
      document.cookie = JSON.stringify(cookie);
 }
 
-async function getChart() {
+ddd 
+function getChart() {
      let sum = 0;
-     let coinPrice = [];
-     let coinName = [];
+     let coinPrice = "";
+     let coinName = "";
      for (const key in coins) {
-          sum += (exchangeRate*cookie.coins[key]).toFixed(2);
+          sum += (exchangeRate*cookie.coins[key]);
      };
 
      for (const key in coins) {
-          coinPrice.append(`$${exchangeRate*cookie.coins[key]}`);
-          coinName.append(coins[key].name)
+          coinPrice += (`${(exchangeRate*cookie.coins[key]).toFixed(2)} `);
+          coinName += `'${(coins[key].name)}' `
      }
 
-     let meta = 
-     `{type:'doughnut',data:{labels:${coinName},datasets:[{data:${coinPrice}}]},options:{plugins:{doughnutlabel:{labels:[{text:'$${sum}USD',font:{size:20}},{text:'total'}]}}}}`
+     coinPrice = coinPrice.trim().replaceAll(" ", ",");
+     coinName = coinName.trim().replaceAll(" ", ",");
 
+     let meta = 
+     `{type:'doughnut',data:{labels:[${coinName}],datasets:[{data:[${coinPrice}]}]},options:{plugins:{doughnutlabel:{labels:[{text:'$${sum.toFixed(2)} USD',font:{size:10}},{text:'total'}]}}}}`;
      return `https://quickchart.io/chart?c=${meta}`;
 
 }
@@ -156,21 +175,21 @@ async function getUSDPrice(ticker) {
 
 
 
-document.getElementById('cryptoForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+// document.getElementById('cryptoForm').addEventListener('submit', function (e) {
+//     e.preventDefault();
   
-    // Get input values
-    const payAmount = parseFloat(document.getElementById('pay').value);
-    const coinSelect = document.getElementById('coin');
-    const selectedOption = coinSelect.options[coinSelect.selectedIndex];
-    const conversionRate = parseFloat(selectedOption.getAttribute('data-rate'));
+//     // Get input values
+//     const payAmount = parseFloat(document.getElementById('pay').value);
+//     const coinSelect = document.getElementById('coin');
+//     const selectedOption = coinSelect.options[coinSelect.selectedIndex];
+//     const conversionRate = parseFloat(selectedOption.getAttribute('data-rate'));
   
-    // Calculate the conversion
-    if (!isNaN(payAmount) && conversionRate) {
-      const cryptoAmount = payAmount * conversionRate;
-      document.getElementById('receive').value = cryptoAmount.toFixed(10); // Limit to 8 decimal places
-    } else {
-      alert('Please enter a valid amount and select a coin.');
-    }
-  });
+//     // Calculate the conversion
+//     if (!isNaN(payAmount) && conversionRate) {
+//       const cryptoAmount = payAmount * conversionRate;
+//       document.getElementById('receive').value = cryptoAmount.toFixed(10); // Limit to 8 decimal places
+//     } else {
+//       alert('Please enter a valid amount and select a coin.');
+//     }
+//   });
   
