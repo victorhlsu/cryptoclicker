@@ -12,7 +12,7 @@ var coins = {
         "symbol": "BTC",
         "iconPath": "btc.png",
         "ticker": "btc-bitcoin",
-        "previousPrice": 1
+        "previousPrice": 1231231
      },
      "solana": {
         "name": "Solana",
@@ -98,7 +98,7 @@ function updateBalance() {
      document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
      document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(10) + `${coins[currCoin].symbol}`;
      document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin]).toFixed(2);
-     document.getElementById("crypName").textContent = currCoin[0];
+     document.getElementById("crypName").textContent = coins[currCoin].name;
 
 }
 
