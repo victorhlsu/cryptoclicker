@@ -12,21 +12,21 @@ var coins = {
         "symbol": "BTC",
         "iconPath": "btc.png",
         "ticker": "btc-bitcoin",
-        "previousPrice": 1231231
+        "previousPrice": 105190.90
      },
      "solana": {
         "name": "Solana",
         "symbol": "SOL",
         "iconPath": "sol.png",
         "ticker": "sol-solana",
-        "previousPrice": 1
+        "previousPrice": 258.4
     },
      "ethereum": {
         "name": "Ethereum",
         "symbol": "ETH",
         "iconPath": "eth.png",
         "ticker": "eth-ethereum",
-        "previousPrice": 1
+        "previousPrice": 3347.71
     },
      "doge": {
         "name": "Doge",
@@ -112,8 +112,9 @@ function saveCookie() {
 
 function updatePrice() {
     for (const key in coins) {
-        getUSDPrice(coins[key].ticker).then(x => 
-            {coins[key].previousPrice = x});
+        getUSDPrice(coins[key].ticker).then(x => {
+          if (x) { coins[key].previousPrice = x; }
+        });
      }
 }
 
@@ -124,7 +125,7 @@ async function getUSDPrice(ticker) {
           const json = await response.json();
           console.log(json);
           return json.quotes.USD.price;
-        } catch (error) {return 1};
+        } catch (error) {return null};
 }
 
 
