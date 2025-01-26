@@ -12,34 +12,34 @@ var coins = {
         "symbol": "BTC",
         "iconPath": "btc.png",
         "ticker": "btc-bitcoin",
-        "previousPrice": 0
+        "previousPrice": 1
      },
      "solana": {
         "name": "Solana",
         "symbol": "SOL",
         "iconPath": "sol.png",
         "ticker": "sol-solana",
-        "previousPrice": 0
+        "previousPrice": 1
     },
      "ethereum": {
         "name": "Ethereum",
         "symbol": "ETH",
         "iconPath": "eth.png",
-        "ticker": "etc-ethereum",
-        "previousPrice": 0
+        "ticker": "eth-ethereum",
+        "previousPrice": 1
     },
      "doge": {
         "name": "Doge",
         "symbol": "DOGE",
         "iconPath": "doge.png",
         "ticker": "doge-doge",
-        "previousPrice": 0
+        "previousPrice": 1
     }
 }
 
 var cookie;
 var currCoin = "bitcoin";
-var clickAmount = baseMoneyPerClick/exchangeRate;
+var clickAmount;
 
 var cps = baseClickPerSecond;
 var cpsInterval; 
@@ -50,16 +50,16 @@ function changeCoin(coinName) {
     document.getElementById("crypto-icon").src = coins[coinName].iconPath; 
     exchangeRate = coins[coinName].previousPrice;
     clickAmount = baseMoneyPerClick/exchangeRate;
+
     updateBalance();
 }
 
 function initializeCookie() {
-     if (!document.cookie) {
+     if (!document.cookie || document.cookie == '') {
           document.cookie = `{"coins": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0}}`;
      }
      
      cookie = JSON.parse(document.cookie);
-     updateBalance();
      cpsInterval = setInterval(mineCrypto, 1000/cps);
 
 
@@ -69,8 +69,15 @@ function initializeCookie() {
     setInterval(function () {
         document.getElementById("updatetime").textContent = i--;
         if (i < 0) { i = 300; }
-    }, 1000);
-     document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
+    }, 1000); 
+    exchangeRate = coins[currCoin].previousPrice;
+    clickAmount = baseMoneyPerClick/exchangeRate;
+    document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
+
+
+
+     
+     updateBalance();
 } 
 
 
@@ -80,6 +87,8 @@ function mineCrypto() {
      img.style.animation = 'none';
      void img.offsetWidth;
      img.style.animation = 'click-bounce 0.3s ease-in-out';
+
+
      updateBalance();
      
 } 
@@ -115,7 +124,7 @@ async function getUSDPrice(ticker) {
           const json = await response.json();
           console.log(json);
           return json.quotes.USD.price;
-        } catch (error) {}
+        } catch (error) {return 1};
 }
 
 
