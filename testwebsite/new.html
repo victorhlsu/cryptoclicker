@@ -25,17 +25,18 @@
     <section id="home" class="hero container">
         <div class="hero-content">
             <h1>Welcome to Crypto Clicker</h1>
-            <p>Your gateway to cryptocurrency trading.</p>
-        </div>d 
+            <p>A simulation of the real Cryptocurrency market with real price tracking.</p>
+        </div>
     </section>
 
     <div class="logo-container">
-        <img src="../website/btc.png" class="logo" alt="logo">
-    <div class="right">right</div>
-    </div>
+        <img src="btc.png" onclick=mineCrypto() class="logo" alt="logo" id="crypto-icon">
+        <div class="right">Currently Mining &nbsp<h2 id="crypName"> </h2>&nbsp at &nbsp<div id="cps"></div>&nbspclicks per second.
+    </div> </div>
 
-    <div class="logo-container">
-        <img src="../website/btc.png" class="logo" alt="logo">
+    <div> <div id="crypto-balance">0</div> (<div id="usdprice"> </div>$USD </div>)
+    <div> 1 <div id="crypto-symbol">BTC</div>: <div id="cryptprice"> </div>$USD </div>
+    <div>(Updates in: </div></div><div id="updatetime">0</div>s)
     </div>
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio container">
@@ -79,7 +80,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2023 Crypto Clicker. All rights reserved.</p>
+            <p>&copy; 2025 Crypto Clicker. All rights reserved.</p>
         </div>
     </footer>
 </body>

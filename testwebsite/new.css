@@ -148,7 +148,95 @@ button:hover {
     color: #aaa;
 }
 
-.logo-container{
-    display:flex;
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    padding: 20px 0; /* Add vertical spacing */
+    background-color: transparent;
+    margin: 0 auto;
+}
+
+/* Logo Styles */
+.logo {
+    width: 100%; /* Take up full width of the wrapper */
+    height: auto; /* Scale height proportionally */
+    object-fit: contain;
+    padding: 15px; /* Optional: Add padding for spacing */
+    display: block;
+    transition: transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Bounce animation on hover */
+.logo:hover,
+.logo:active,
+.logo:focus {
+    animation: bounce 0.5s ease; /* Apply the bounce animation */
+}
+
+/* Ensure the button scales with the logo during animations */
+.logo:hover ~ .logo-button,
+.logo:active ~ .logo-button,
+.logo:focus ~ .logo-button {
+    transform: translate(-50%, -50%) scale(1.1); /* Scale the button with the logo */
+}
+
+/* Right Rectangle */
+.right {
+    width: 50%; /* Takes up the other half of the container */
+    height: 100%; /* Full height of the container */
+    min-height: 80px; /* Minimum height to match logo */
+    background-color: transparent; /* Background color for the rectangle */
+    color:white;
+    opacity: 100%;
+    border-radius: 15px; /* Rounded borders */
+    margin-left: 10px; /* Optional: Add spacing between logo and rectangle */
+    display: flex; /* Ensure the rectangle is centered within its space */
+    justify-content: center; /* Center rectangle horizontally */
+    align-items: center; /* Center rectangle vertically */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 414px) {
+    .logo-container {
+        flex-direction: column; /* Stack logo and rectangle vertically on small screens */
+    }
+
+    .logo,
+    .right {
+        width: 100%; /* Full width for stacked layout */
+        margin-left: 0; /* Remove margin for stacked layout */
+    }
+
+    .right {
+        margin-top: 10px; /* Add spacing between logo and rectangle */
+    }
+}
+
+@media (min-width: 415px) {
+    .logo-container {
+        flex-direction: row;
+        justify-content: center; /* Center items horizontally */
+        gap: 10px; /* Add spacing between logo and rectangle */
+    }
+
+    .logo,
+    .right {
+        flex: 1; /* Ensure both take equal space */
+        max-width: 50%; /* Ensure they don't exceed half the container */
+    }
+}
+/* Keyframes for bounce animation */
+@keyframes bounce {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.1); }
+    30% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.98); }
+    100% { transform: scale(1); }
 }

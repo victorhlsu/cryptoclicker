@@ -48,6 +48,7 @@ var cpsInterval;
 function changeCoin(coinName) {
     currCoin = coinName;
     document.getElementById("crypto-icon").src = coins[coinName].iconPath; 
+    document.getElementById("crypto-symbol").textContent = coins[coinName].name;
     exchangeRate = coins[coinName].previousPrice;
     clickAmount = baseMoneyPerClick/exchangeRate;
 
@@ -67,12 +68,12 @@ function initializeCookie() {
      setInterval(updatePrice(), 300000);
      let i = 300;
     setInterval(function () {
-        //document.getElementById("updatetime").textContent = i--;
+        document.getElementById("updatetime").textContent = i--;
         if (i < 0) { i = 300; }
     }, 1000); 
     exchangeRate = coins[currCoin].previousPrice;
     clickAmount = baseMoneyPerClick/exchangeRate;
-    //document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
+    document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
 
     for (const key in coins) {
       var div = document.createElement('div');
@@ -87,6 +88,10 @@ function initializeCookie() {
       div.appendChild(h3);
       div.appendChild(paragraph);
       document.getElementById("portfolio-content").appendChild(div);
+
+      document.getElementById(div.id).addEventListener("click", function (e) {
+        changeCoin(key);
+      })
      }
 
      
@@ -95,23 +100,27 @@ function initializeCookie() {
 
 
 function mineCrypto() {
-     cookie.coins[currCoin] += clickAmount;
-
-
-     updateBalance();
+    cookie.coins[currCoin] += clickAmount;
+    const img = document.querySelector('.logo-container img');
+    img.style.animation = 'none';
+    void img.offsetWidth;
+    img.style.animation = 'bounce 0.3s ease-in-out';
+    updateBalance();
      
 } 
+  
 
 
 function updateBalance() {
-     //document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
-     //document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(10) + `${coins[currCoin].symbol}`;
-     //document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin]).toFixed(2);
-     //document.getElementById("crypName").textContent = coins[currCoin].name;
+     document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
+     document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(10) + `${coins[currCoin].symbol}`;
+     document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin]).toFixed(2);
+     document.getElementById("crypName").textContent = coins[currCoin].name;
+     document.getElementById("cps").textContent = cps;
 
      for (const key in coins) {
       document.getElementById(`portfolio-h3-${key}`).textContent = `${coins[key].name}`;
-      document.getElementById(`portfolio-paragraph-${key}`.textContent = `Holdings: ${cookie.coins[key]} ${coins[key].name}`);
+      document.getElementById(`portfolio-paragraph-${key}`).textContent = `Holdings: ${cookie.coins[key]} ${coins[key].name}`;
      }
 
      document.getElementById('piecharts').src= getChart();
@@ -123,7 +132,7 @@ function saveCookie() {
      document.cookie = JSON.stringify(cookie);
 }
 
-ddd 
+
 function getChart() {
      let sum = 0;
      let coinPrice = "";
@@ -170,7 +179,6 @@ async function getUSDPrice(ticker) {
 
 
 ///
-
 
 
 
