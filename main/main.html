@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Clicker</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="new.css">
-    <script src="new.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body onload = initializeCookie(); onunload = saveCookie()>
     <!-- Navigation -->
@@ -28,30 +28,54 @@
             <p>A simulation of the real Cryptocurrency market with real price tracking.</p>
         </div>
     </section>
+    <div class="positionizer">
+    <div class="flex-container">
+        <!-- First Row -->
+        <div class="row row-1">
+            <label>
+                You pay with
+                <select id="gpupay" onchange="updateGPU(`update`)">
+                    <option value="bitcoin">Bitcoin (BTC)</option>
+                    <option value="ethereum">Ethereum (ETH)</option>
+                </select>
+            </label>
+            <label>
+                GPU Installation
+                <select id="gpuinstallation" onchange="updateGPU(`update`)">
+                    <option value="bitcoin">Bitcoin (BTC)</option>
+                    <option value="ethereum">Ethereum (ETH)</option>
+                    <option value="solana">Solana (SOL)</option>
+                    <option value="doge">Dogecoin (DOGE)</option>
+                </select>
+            </label>
+        </div>
 
+        <!-- Second Row -->
+        <div class="row row-2">
+            <label>
+                Amount to Pay
+                <input type="text" id="gpuresult" placeholder="Value" readonly/>
+            </label>
+            <label>
+                # of GPUs to Install
+                <input type="text" id="gpuinstall" placeholder="Quantity" readonly/>
+            </label>
+        </div>
+
+        <!-- Third Row -->
+        <div class="row row-3">
+            <img src="delete.png" alt="Left Image" class="image" onclick="updateGPU(-1)">
+            <div class="text">Transaction Details</div>
+            <img src="add2cart.png" alt="Right Image" class="image" onclick="updateGPU(1)">
+        </div>
+
+        <!-- Fourth Row -->
+        <div class="row row-4">
+            <button class="button" onclick="updateGPU(`buy`)">Purchase</button>
+        </div>
+    </div>
+</div>
     <div class="logo-container">
-        <div class="upgrades">
-            <div class="toprow">
-                <div class="form-group">
-                    <label for="currency">Transfer:</label>
-                    <select id="from">
-                        <option value="bitcoin" >Bitcoin (BTC)</option>
-                        <option value="solana" >Solana (SOL)</option>
-                        <option value="ethereum" >Ethereum (ETH)</option>
-                        <option value="doge" >Dogecoin (DOGE)</option>
-                    </select>
-                </div>
-            </div>
-            <div class="midrow">
-                <img src="delete.png">
-                <div>count</div>
-                <img src="add2cart.png">
-            </div>
-            <div class="button">
-                <button>submit</button>
-            </div>
-        </div>
-        </div>
         <img src="btc.png" onclick=mineCrypto() class="logo" alt="logo" id="crypto-icon">
         <div class="right">
             <div class="row1">

@@ -37,7 +37,9 @@ var coins = {
     }
 }
 
-var cookie;
+var cookie = {"coins": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0},
+"gpus": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0}};
+
 var currCoin = "bitcoin";
 var clickAmount;
 
@@ -45,24 +47,11 @@ var cps = baseClickPerSecond;
 var cpsInterval; 
 
 
-function changeCoin(coinName) {
-    currCoin = coinName;
-    document.getElementById("crypto-icon").src = coins[coinName].iconPath; 
-    document.getElementById("crypto-symbol").textContent = `1 ${coins[coinName].name}`;
-    exchangeRate = coins[coinName].previousPrice;
-    clickAmount = baseMoneyPerClick/exchangeRate;
-
-    updateBalance();
-}
-
 function initializeCookie() {
-     if (!document.cookie || document.cookie == '' || document.cookie == 'undefined') {
-          document.cookie = `{"coins": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0}}`;
-     }
-     
-     cookie = JSON.parse(document.cookie);
-     cpsInterval = setInterval(function () {mineCrypto(); if (cps == 0) clearInterval(cpsInterval)}, 1000/cps);
-
+     if (document.cookie && !document.cookie == 'undefined') {
+          cookie = JSON.parse(document.cookie);
+     } 
+  
 
      // Price change per 500 seconds
      setInterval(updatePrice(), 300000);
@@ -94,7 +83,13 @@ function initializeCookie() {
       })
      }
 
-     
+     for (const key in coins) {
+      cpsInterval = setInterval(function () {if (cookie.gpus[key] == 0) {return clearInterval(cpsInterval);} 
+        cookie.coins[key] += clickAmount; updateBalance()}, 1000/cookie.gpus[key]);
+    }
+
+    
+
      updateBalance();
 
 
@@ -106,9 +101,21 @@ function initializeCookie() {
       if (payAmount && convertTo) {
         document.getElementById('result').value = (payAmount/(coins[convertTo].previousPrice)).toFixed(8);
       }
+      
     })
 
 } 
+
+
+function changeCoin(coinName) {
+  currCoin = coinName;
+  document.getElementById("crypto-icon").src = coins[coinName].iconPath; 
+  document.getElementById("crypto-symbol").textContent = `1 ${coins[coinName].name}`;
+  exchangeRate = coins[coinName].previousPrice;
+  clickAmount = baseMoneyPerClick/exchangeRate;
+
+  updateBalance();
+}
 
 
 function updateConvert() {
@@ -139,7 +146,7 @@ function transferCrypto() {
     var from2 = document.getElementById('from');
     var from = from2.options[from2.selectedIndex].value;
 
-    if (!payAmount || payAmount <=   0) { 
+    if (!payAmount || payAmount <=  0) { 
       alert("Input a valid USD value!")
       return;
     }
@@ -154,21 +161,63 @@ function transferCrypto() {
     updateBalance();
 }
   
+var buyGPU = 0;
 
+function updateGPU(a) {
+  var gpupay = document.getElementById('gpupay');
+  var convertTo = gpupay.options[gpupay.selectedIndex].value;
+  
+  var gpuinstallation = document.getElementById('gpuinstallation'); 
+  var gpuinstall = gpuinstallation.options[gpuinstallation.selectedIndex].value;
+
+  var multiplier = ((buyGPU+(cookie.gpus[gpuinstall]))**0.4)*500;
+
+
+  if (a == "update") {
+    if (buyGPU > 0) {
+      document.getElementById('gpuresult').value = (multiplier/(coins[convertTo].previousPrice)).toFixed(8);
+    }
+  } else if (a == "buy") {
+    if (buyGPU <= 0) {
+      alert("Input more than one GPU")
+      return;
+    }
+    let fromAmount = cookie.coins[convertTo] * coins[convertTo].previousPrice;
+    if (fromAmount < multiplier) {
+      alert("You do not have enough funds.")
+      return;
+    }
+    cookie.coins[convertTo] -= multiplier/coins[convertTo].previousPrice;
+    cookie.gpus[gpuinstall] += buyGPU;
+    alert(`Successfully bought:\n ${buyGPU} GPUS for ${coins[gpuinstall].symbol} for ${(multiplier/coins[convertTo].previousPrice).toFixed(5)}${coins[convertTo].symbol}`)
+    buyGPU = 0;
+    updateBalance();
+  }
+
+  else {
+    buyGPU = a+buyGPU;
+    if (buyGPU <= 0) buyGPU = 1;
+    document.getElementById('gpuinstall').value = buyGPU;
+    updateGPU("update");
+  }
+}
 
 function updateBalance() {
      document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
      document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(5) + `${coins[currCoin].symbol}`;
-     document.getElementById("usdprice").textContent = `(${((coins[currCoin].previousPrice)*cookie.coins[currCoin]).toFixed(2)}$ USD)`
+     document.getElementById("usdprice").textContent = `(${((coins[currCoin].previousPrice) *cookie.coins[currCoin]).toFixed(2)}$ USD)`
      document.getElementById("crypName").textContent = coins[currCoin].name;
-     document.getElementById("cps").textContent = cps;
+     document.getElementById("cps").textContent = cookie.gpus[currCoin];
+     
 
      for (const key in coins) {
       document.getElementById(`portfolio-h3-${key}`).textContent = `${coins[key].name}`;
       document.getElementById(`portfolio-paragraph-${key}`).textContent = `${(cookie.coins[key]).toFixed(5)} ${coins[key].symbol} (${(coins[key].previousPrice*cookie.coins[key]).toFixed(2)}$USD)`;
      }
 
-     document.getElementById('piecharts').src= getChart();
+
+     document.getElementById('piecharts').src=getChart()
+    
 
 }
 
