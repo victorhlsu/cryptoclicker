@@ -6,10 +6,11 @@ var baseClickPerSecond = 1;
 // 
 
 
+
 var cookie;
 var previousPrice = [104997.80, 3343.24]
 var currCoin = ["Bitcoin", "btc", "₿", "btc-bitcoin"];
-var exchangeRate = 104997.80;
+var exchangeRate = previousPrice[0];
 var clickAmount = baseMoneyPerClick/exchangeRate;
 
 var cps = baseClickPerSecond;
@@ -34,10 +35,7 @@ function changeCoin() {
 }
 
 function initializeCookie() {
-     document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
      document.getElementById("earning-rate").textContent = baseMoneyPerClick + "$ USD"; 
-     document.getElementById("crypName").textContent = currCoin[0];
-     document.cookie = '';
      if (!document.cookie || document.cookie == '' || document.cookie == 'undefined') {
           document.cookie = `{"coins": {"btc": 0, "eth": 0}}`;
      }
@@ -57,7 +55,8 @@ function initializeCookie() {
           setInterval(function () {
                document.getElementById("updatetime").textContent = i--;
                if (i < 0) { i = 300; }
-               }, 1000);
+          }, 1000);
+     document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
 } 
 function mineCrypto() {
      cookie.coins[currCoin[1]] += clickAmount;
@@ -74,6 +73,7 @@ function updateBalance() {
      document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
      document.getElementById("crypto-balance").textContent = cookie.coins[currCoin[1]].toFixed(10) + `${currCoin[2]}`;
      document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin[1]]).toFixed(2);
+     document.getElementById("crypName").textContent = currCoin[0];
 
 }
 
