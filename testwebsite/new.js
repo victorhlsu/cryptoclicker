@@ -48,7 +48,7 @@ var cpsInterval;
 function changeCoin(coinName) {
     currCoin = coinName;
     document.getElementById("crypto-icon").src = coins[coinName].iconPath; 
-    document.getElementById("crypto-symbol").textContent = coins[coinName].name;
+    document.getElementById("crypto-symbol").textContent = `1 ${coins[coinName].name}`;
     exchangeRate = coins[coinName].previousPrice;
     clickAmount = baseMoneyPerClick/exchangeRate;
 
@@ -114,7 +114,7 @@ function mineCrypto() {
 function updateBalance() {
      document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
      document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(5) + `${coins[currCoin].symbol}`;
-     document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin]).toFixed(2);
+     document.getElementById("usdprice").textContent = `(${(exchangeRate*cookie.coins[currCoin]).toFixed(2)}$ USD)`
      document.getElementById("crypName").textContent = coins[currCoin].name;
      document.getElementById("cps").textContent = cps;
 
