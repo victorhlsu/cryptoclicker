@@ -191,14 +191,16 @@ button:hover {
     width: 50%; /* Takes up the other half of the container */
     height: 100%; /* Full height of the container */
     min-height: 80px; /* Minimum height to match logo */
-    background-color: transparent; /* Background color for the rectangle */
+    background-color: blue; /* Background color for the rectangle */
     color:white;
+    border-color:white;
     opacity: 100%;
     border-radius: 15px; /* Rounded borders */
     margin-left: 10px; /* Optional: Add spacing between logo and rectangle */
     display: flex; /* Ensure the rectangle is centered within its space */
     justify-content: center; /* Center rectangle horizontally */
     align-items: center; /* Center rectangle vertically */
+    flex-direction: column;
 }
 
 /* Responsive Adjustments */
