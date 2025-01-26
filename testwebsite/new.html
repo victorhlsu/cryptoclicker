@@ -29,21 +29,30 @@
         </div>
     </section>
 
-    <!--rewrite-->
     <div class="logo-container">
         <img src="btc.png" onclick=mineCrypto() class="logo" alt="logo" id="crypto-icon">
         <div class="right">
-            <div>Currently Mining</div>
-            <h2 id="crypName"> </h2>
-            <div>at <div id="cps">0</div>
-                clicks per second.
-                <div id="crypto-balance">0</div> 
-                <div id="usdprice"></div>
-                <div id="crypto-symbol">1 BTC</div>: <div id="cryptprice"></div>$USD
-                <div>(Updates in: <div id="updatetime">0</div>s) </div>
+            <div class="row1">
+                <span class="topleft">Currently Mining</span>
+                <span class="topright" id="crypName"> </span>
             </div>
-        </div>
-    </div> 
+            <div class="row1">
+                <span class="middleleft">at </span>
+                <span class="middlemiddle" id="cps">0</span>
+                <span class="middleright">clicks per second.</span>
+            </div>
+            <div class="mid1" id="crypto-balance">0</div> 
+            <div class="mid2" id="usdprice"></div>
+            <div class="secondbot">
+                <span id="crypto-symbol">1 BTC</span>
+                <span class="bottommid">:</span> 
+                <span class="bottomright" id="cryptprice"></span>$USD
+            </div> 
+            <div class="bottomrow">
+                <span>(Updates in: </span>
+                <span id="updatetime">0</span><span>s)</span>
+            </div>
+    </div>
 </div>
 
     <!-- Portfolio Section -->
@@ -75,23 +84,23 @@
                     <option value="bitcoin" >Bitcoin (BTC)</option>
                     <option value="solana" >Solana (SOL)</option>
                     <option value="ethereum" >Ethereum (ETH)</option>
-                    <option value="dogecoin" >Dogecoin (DOGE)</option>
+                    <option value="doge" >Dogecoin (DOGE)</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="currency">To:</label>
-                <select id="to">
+                <select id="to" onchange=updateConvert()>
                     <option value="bitcoin">Bitcoin (BTC)</option>
                     <option value="solana">Solana (SOL)</option>
                     <option value="ethereum">Ethereum (ETH)</option>
-                    <option value="dogecoin">Dogecoin (DOGE)</option>
+                    <option value="doge">Dogecoin (DOGE)</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="result">Converted Amount:</label>
                 <input type="text" id="result" placeholder="Crypto amount" readonly />
             </div>
-            <button type="submit">Convert</button>
+            <button onclick=transferCrypto() toype="submit">Convert</button>
         </form>
     </section>
 

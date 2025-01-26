@@ -186,12 +186,12 @@ button:hover {
     transform: translate(-50%, -50%) scale(1.1); /* Scale the button with the logo */
 }
 
-/* Right Rectangle */
 .right {
     width: 50%; /* Takes up the other half of the container */
+    min-width:400px;
     height: 100%; /* Full height of the container */
     min-height: 80px; /* Minimum height to match logo */
-    background-color: blue; /* Background color for the rectangle */
+    background-color: #111; /* Background color for the rectangle */
     color:white;
     border-color:white;
     opacity: 100%;
@@ -201,6 +201,7 @@ button:hover {
     justify-content: center; /* Center rectangle horizontally */
     align-items: center; /* Center rectangle vertically */
     flex-direction: column;
+    padding:5vh;
 }
 
 /* Responsive Adjustments */
