@@ -159,7 +159,7 @@ function transferCrypto() {
 function updateBalance() {
      document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
      document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(5) + `${coins[currCoin].symbol}`;
-     document.getElementById("usdprice").textContent = `(${(exchangeRate*cookie.coins[currCoin]).toFixed(2)}$ USD)`
+     document.getElementById("usdprice").textContent = `(${((coins[currCoin].previousPrice)*cookie.coins[currCoin]).toFixed(2)}$ USD)`
      document.getElementById("crypName").textContent = coins[currCoin].name;
      document.getElementById("cps").textContent = cps;
 
