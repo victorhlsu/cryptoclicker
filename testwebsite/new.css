@@ -243,3 +243,28 @@ button:hover {
     70% { transform: scale(0.98); }
     100% { transform: scale(1); }
 }
+
+.topright{
+    font-weight:bolder;
+}
+
+hr {
+    padding: 4.8px;
+    color:transparent;
+    border-color: transparent;
+}
+
+.upgrades{
+    display:flex;
+    flex-direction:row;
+    height:auto;
+}
+.toprow{
+    width:80%;
+    height:33%;
+}
+.midrow{
+    flex-direction:column;
+    max-height:33%;
+    justify-content: space-evenly;
+}

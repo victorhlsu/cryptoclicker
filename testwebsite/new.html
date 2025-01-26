@@ -30,19 +30,44 @@
     </section>
 
     <div class="logo-container">
+        <div class="upgrades">
+            <div class="toprow">
+                <div class="form-group">
+                    <label for="currency">Transfer:</label>
+                    <select id="from">
+                        <option value="bitcoin" >Bitcoin (BTC)</option>
+                        <option value="solana" >Solana (SOL)</option>
+                        <option value="ethereum" >Ethereum (ETH)</option>
+                        <option value="doge" >Dogecoin (DOGE)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="midrow">
+                <img src="delete.png">
+                <div>count</div>
+                <img src="add2cart.png">
+            </div>
+            <div class="button">
+                <button>submit</button>
+            </div>
+        </div>
+        </div>
         <img src="btc.png" onclick=mineCrypto() class="logo" alt="logo" id="crypto-icon">
         <div class="right">
             <div class="row1">
                 <span class="topleft">Currently Mining</span>
                 <span class="topright" id="crypName"> </span>
             </div>
-            <div class="row1">
+            <div class="row2">
                 <span class="middleleft">at </span>
                 <span class="middlemiddle" id="cps">0</span>
                 <span class="middleright">clicks per second.</span>
             </div>
-            <div class="mid1" id="crypto-balance">0</div> 
-            <div class="mid2" id="usdprice"></div>
+            <div class="bal">
+                <span class="mid1" id="crypto-balance">0</span> 
+                <span class="mid2" id="usdprice"></span>
+            </div>
+            <hr>
             <div class="secondbot">
                 <span id="crypto-symbol">1 BTC</span>
                 <span class="bottommid">:</span> 
