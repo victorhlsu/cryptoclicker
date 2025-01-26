@@ -113,14 +113,14 @@ function mineCrypto() {
 
 function updateBalance() {
      document.getElementById("cryptprice").textContent = exchangeRate.toFixed(2);
-     document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(10) + `${coins[currCoin].symbol}`;
+     document.getElementById("crypto-balance").textContent = cookie.coins[currCoin].toFixed(5) + `${coins[currCoin].symbol}`;
      document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin]).toFixed(2);
      document.getElementById("crypName").textContent = coins[currCoin].name;
      document.getElementById("cps").textContent = cps;
 
      for (const key in coins) {
       document.getElementById(`portfolio-h3-${key}`).textContent = `${coins[key].name}`;
-      document.getElementById(`portfolio-paragraph-${key}`).textContent = `Holdings: ${cookie.coins[key]} ${coins[key].symbol}`;
+      document.getElementById(`portfolio-paragraph-${key}`).textContent = `${(cookie.coins[key]).toFixed(5)} ${coins[key].symbol} (${(coins[key].previousPrice*cookie.coins[key]).toFixed(2)}$USD)`;
      }
 
      document.getElementById('piecharts').src= getChart();
@@ -183,21 +183,19 @@ async function getUSDPrice(ticker) {
 
 
 
-// document.getElementById('cryptoForm').addEventListener('submit', function (e) {
-//     e.preventDefault();
+document.getElementById('cryptoForm').addEventListener('submit', function (e) {
+    e.preventDefault();
   
-//     // Get input values
-//     const payAmount = parseFloat(document.getElementById('pay').value);
-//     const coinSelect = document.getElementById('coin');
-//     const selectedOption = coinSelect.options[coinSelect.selectedIndex];
-//     const conversionRate = parseFloat(selectedOption.getAttribute('data-rate'));
+    const payAmount = parseFloat(document.getElementById('pay').value);
+    const coinSelect = document.getElementById('coin');
+    const selectedOption = coinSelect.options[coinSelect.selectedIndex];
+    const conversionRate = parseFloat(selectedOption.getAttribute('data-rate'));
   
-//     // Calculate the conversion
-//     if (!isNaN(payAmount) && conversionRate) {
-//       const cryptoAmount = payAmount * conversionRate;
-//       document.getElementById('receive').value = cryptoAmount.toFixed(10); // Limit to 8 decimal places
-//     } else {
-//       alert('Please enter a valid amount and select a coin.');
-//     }
-//   });
+    if (!isNaN(payAmount) && conversionRate) {
+      const cryptoAmount = payAmount * conversionRate;
+      document.getElementById('receive').value = cryptoAmount.toFixed(10); // Limit to 8 decimal places
+    } else {
+      alert('Please enter a valid amount and select a coin.');
+    }
+  });
   
