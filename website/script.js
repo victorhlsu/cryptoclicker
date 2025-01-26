@@ -55,7 +55,7 @@ function changeCoin(coinName) {
 }
 
 function initializeCookie() {
-     if (!document.cookie || document.cookie == '') {
+     if (!document.cookie || document.cookie == '' || document.cookie == 'undefined') {
           document.cookie = `{"coins": {"bitcoin": 0, "ethereum": 0, "solana": 0, "doge": 0}}`;
      }
      
