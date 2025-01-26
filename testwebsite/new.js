@@ -139,6 +139,10 @@ function transferCrypto() {
     var from2 = document.getElementById('from');
     var from = from2.options[from2.selectedIndex].value;
 
+    if (!payAmount) {
+      alert("Input a valid USD value!")
+      return;
+    }
     let fromAmount = cookie.coins[from] * coins[from].previousPrice;
     if (fromAmount < payAmount) {
       alert("You do not have enough funds.")
