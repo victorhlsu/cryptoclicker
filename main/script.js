@@ -92,6 +92,7 @@ function initializeCookie() {
 
     
 
+    setInterval(document.getElementById('piecharts').src=getChart(), 5000);
      updateBalance();
 
 
@@ -217,7 +218,7 @@ function updateBalance() {
      }
 
 
-     document.getElementById('piecharts').src=getChart()
+    
     
 
 }
