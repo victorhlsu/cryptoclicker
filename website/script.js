@@ -7,6 +7,7 @@ var baseClickPerSecond = 1;
 
 
 var cookie;
+var previousPrice = [104997.80, 3343.24]
 var currCoin = ["Bitcoin", "btc", "₿", "btc-bitcoin"];
 var exchangeRate = 104997.80;
 var clickAmount = baseMoneyPerClick/exchangeRate;
@@ -19,16 +20,14 @@ function changeCoin() {
      if (currCoin[1] == "eth") {
           currCoin = ["Bitcoin", "btc", "₿", "btc-bitcoin"];
           document.getElementById("crypto-icon").src = "filler.png"
-          exchangeRate = 104997.80;
-          getUSDPrice().then(x => {exchangeRate = x;}) 
+          exchangeRate = previousPrice[0];
           clickAmount = baseMoneyPerClick/exchangeRate;
           updateBalance();
      } 
      else if (currCoin[1] == "btc") {
           currCoin = ["Ethereum", "eth", "Ξ", "eth-ethereum"];
           document.getElementById("crypto-icon").src = "eth.png"
-          exchangeRate = 3343.24;
-          getUSDPrice().then(x => {exchangeRate = x;})
+          exchangeRate = previousPrice[1];
           clickAmount = baseMoneyPerClick/exchangeRate
           updateBalance();
      }
@@ -48,7 +47,11 @@ function initializeCookie() {
      cpsInterval = setInterval(mineCrypto, 1000/cps);
 
 
-     getUSDPrice().then(x => {exchangeRate = x;});
+     // Price change per 500 seconds
+     getUSDPrice().then(x => {exchangeRate = x; previousPrice[0] = x;});
+     currCoin[3] = "eth-ethereum";
+     getUSDPrice().then(x => {previousPrice[1] = x;});
+     currCoin[3] = "btc-bitcoin"
      setInterval(function () {getUSDPrice().then(x => {exchangeRate = x; updateBalance();})}, 300000)
           let i = 300;
           setInterval(function () {
@@ -64,7 +67,7 @@ function mineCrypto() {
      img.style.animation = 'click-bounce 0.3s ease-in-out';
      updateBalance();
      
-}
+} 
 
 
 function updateBalance() {
@@ -73,7 +76,6 @@ function updateBalance() {
      document.getElementById("usdprice").textContent = (exchangeRate*cookie.coins[currCoin[1]]).toFixed(2);
 
 }
-
 
 
 function saveCookie() {
