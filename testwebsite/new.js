@@ -96,6 +96,32 @@ function initializeCookie() {
 
      
      updateBalance();
+
+
+     document.getElementById('amount').addEventListener('input', function (e) {
+      const payAmount = parseFloat(document.getElementById('amount').value);
+      var from = document.getElementById('from');
+      var to = document.getElementById('to');
+      const coinSelect = from.options[from.selectedIndex].value;
+      const convertTo = to.options[to.selectedIndex].value;
+    
+      if (payAmount && coinSelect && convertTo) {
+        document.getElementById('result').value = (payAmount/(coins[coinSelect].previousPrice)).toFixed(8);
+      }
+    })
+
+
+     ['from', 'to'].forEach(x => {document.getElementById(x).addEventListener('change', function (e) {
+      const payAmount = parseFloat(document.getElementById(x).value);
+      var from = document.getElementById('from');
+      var to = document.getElementById('to');
+      const coinSelect = from.options[from.selectedIndex].value;
+      const convertTo = to.options[to.selectedIndex].value;
+    
+      if (payAmount && coinSelect && convertTo) {
+        document.getElementById('result').value = (payAmount/(coins[coinSelect].previousPrice)).toFixed(8);
+      }
+    })});
 } 
 
 
@@ -179,6 +205,7 @@ async function getUSDPrice(ticker) {
 
 
 ///
+
 
 
 

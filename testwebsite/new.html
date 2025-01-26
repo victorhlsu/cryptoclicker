@@ -67,14 +67,24 @@
         <form id="cryptoForm" class="exchange-form">
             <div class="form-group">
                 <label for="amount">Amount in USD:</label>
-                <input type="number" id="amount" placeholder="Enter amount" required />
+                <input type="number" id="amount" placeholder="Enter amount in USD" required />
             </div>
             <div class="form-group">
-                <label for="currency">Select Cryptocurrency:</label>
-                <select id="currency">
-                    <option value="bitcoin" data-rate="0.000025">Bitcoin (BTC)</option>
-                    <option value="ethereum" data-rate="0.0004">Ethereum (ETH)</option>
-                    <option value="litecoin" data-rate="0.005">Litecoin (LTC)</option>
+                <label for="currency">Transfer:</label>
+                <select id="from">
+                    <option value="bitcoin" >Bitcoin (BTC)</option>
+                    <option value="solana" >Solana (SOL)</option>
+                    <option value="ethereum" >Ethereum (ETH)</option>
+                    <option value="dogecoin" >Dogecoin (DOGE)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="currency">To:</label>
+                <select id="to">
+                    <option value="bitcoin">Bitcoin (BTC)</option>
+                    <option value="solana">Solana (SOL)</option>
+                    <option value="ethereum">Ethereum (ETH)</option>
+                    <option value="dogecoin">Dogecoin (DOGE)</option>
                 </select>
             </div>
             <div class="form-group">
